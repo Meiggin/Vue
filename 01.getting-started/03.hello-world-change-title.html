@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>03.hello-world-change-title</title>
+    </head>
+    <body>
+        <div id="app">
+            <!--
+            v-model:绑定data的title的值
+            v-on:input事件绑定，绑定methods下的changeTitle事件
+            @input为v-on:input的缩写，同样绑定methods的changeTitle事件
+            -->
+            <input type="text" v-model="title"><br/>
+            <input type="text" v-on:input="changeTitle"><br/>
+            <input type="text" @input="changeTitle"><br/>
+
+            <p>
+                {{ title }}
+            </p>
+        </div>
+        <script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    title: 'Hello World!'
+                },
+                methods: {
+                    changeTitle: function(e) {
+                        //this指向的是data对象
+                        this.title = e.target.value;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

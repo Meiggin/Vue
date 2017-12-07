@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>08.exercise-result</title>
+    </head>
+    <body>
+        <div id="exercise">
+            <!-- 1) 用插值表达式实现姓名及年龄的显示 -->
+            <p>VueJS is pretty cool - {{ name }} ({{ age }})</p>
+            <!-- 2) 将年龄以3倍数字显示 -->
+            <p>{{ age * 3 }}</p>
+            <!-- 3) 调用一个函数，将0-1随机浮点数进行显示-->
+            <p>{{ random() }}</p>
+            <!-- 4) 将img/vue.png图片显示在img标签中 -->
+            <div>
+                <img v-bind:src="image" style="width:100px;height:100px">
+            </div>
+            <!-- 5) 在文本框中显示姓名属性内容 -->
+            <div>
+                <input type="text" v-bind:value="name">
+            </div>
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#exercise',
+                data: {
+                    name: 'Vane',
+                    age: 38,
+                    image: 'images/vue.png'
+                },
+                methods: {
+                    random: function() {
+                        return Math.random();
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>04.binding-to-attribute</title>
+	</head>
+	<body>
+		<div id="app">
+			<p>
+				{{ sayHello() }}
+				<!--
+					1.下面的链接地址将无法打开；
+					2.VueJs中不能在任何html标签的属性值中使用{{ 属性值 }}进行设置操作
+					3.通过v-bind:href来进行属性值的绑定操作
+					4.通过:href缩写方式进行属性值的绑定
+				-->
+				<a href="{{ link }}">Baidu</a>
+				<a v-bind:href="link">Baidu</a>
+				<a :href="link">baidu</a>
+			</p>
+		</div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el:'#app',
+				data:{
+					title:'Hello World!',
+					link:'http://www.baidu.com'
+				},
+				methods:{
+					sayHello:function(){
+						return this.title;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

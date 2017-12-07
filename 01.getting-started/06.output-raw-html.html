@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>06.output-raw-html</title>
+	</head>
+	<body>
+		<div id="app">
+			<p>
+				<!--
+				1.v-once，可以让节点渲染的时候只允许渲染一次，就算是方法里重新设置也不作更新；
+				2.如果不设置v-once的话，{{ title }}将会被进行二次渲染
+				-->
+				<h1 v-once>{{ title }}</h1>
+				{{ sayHello() }}
+				<!--
+					1.下面的链接地址将无法打开；
+					2.VueJs中不能在任何html标签的属性值中使用{{ 属性值 }}进行设置操作
+					3.通过v-bind:href来进行属性值的绑定操作
+					4.通过:href缩写方式进行属性值的绑定
+				-->
+				<a href="{{ link }}">Baidu</a>
+				<a v-bind:href="link">Baidu</a>
+				<a :href="link">baidu</a>
+				<!--
+				1.如果设置的属性是一个html标签类型的内容，那么，直接用表达式方式将会输出“未加工”过的字符串内容
+				2.如果想要让其显示其html的内容形式，可以利用v-html的方式进行数据绑定
+				-->
+				<p>
+					{{ finishedLink }}
+				</p>
+
+				<p v-html="finishedLink"></p>
+			</p>
+		</div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el:'#app',
+				data:{
+					title:'Hello World!',
+					link:'http://www.baidu.com',
+					finishedLink:"<a href='http://www.baidu.com'>Baidu</a>"
+				},
+				methods:{
+					sayHello:function(){
+						this.title = "Hello Vue!";
+						return this.title;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

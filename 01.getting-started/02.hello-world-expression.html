@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>02.hello-world-expression</title>
+    </head>
+    <body>
+        <div id="app">
+            <p>
+                <!--
+                1.{{ expression }}，插值表达式，既然是表达式，那么简单数据类型、复杂数据类型和函数等都可以支持；
+                2.在表达式中，我们既不需要写this.title，也不需要写data.title，而仅需要写title即可；
+                    1).simple data type,之前已经操作过简单表达式；
+                    2).complex data type,复杂数据的操作同样可以；
+                    3).function expression,函数的操作当然也行；
+                -->
+                {{ ['a','b','c'][1] }}
+                <br/>
+                {{ {"name":"vane","age":38,"sex":1}.age }}
+                <br/>
+                {{ sayHello() }}
+            </p>
+        </div>
+        <script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    title: 'Hello World!'
+                },
+                methods: {
+                    sayHello: function() {
+                        return "Hello Vue!";
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
