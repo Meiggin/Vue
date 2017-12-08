@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>02.listening-event-mousemove</title>
+    </head>
+    <body>
+        <div id="app">
+            <button type="button" name="button" v-on:click="increase">Click me</button>
+            <p>
+                {{ counter }}
+            </p>
+            <p v-on:mousemove="updateCoordinates">
+                Coordinates: {{ x }} / {{ y }}
+            </p>
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    counter:0,
+                    x:0,
+                    y:0
+                },
+                methods: {
+                    increase: function() {
+                        this.counter++;
+                    },
+                    updateCoordinates:function(event){
+                        this.x = event.clientX;
+                        this.y = event.clientY;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

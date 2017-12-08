@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>04.listening-event-propagation</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 函数的参数传递，可以将事件$event作为参数传递到函数中 -->
+            <button type="button" name="button" v-on:click="increase(2,$event)">Click me</button>
+            <p>
+                {{ counter }}
+            </p>
+            <p v-on:mousemove="updateCoordinates">
+                Coordinates: {{ x }} / {{ y }}
+                - <span v-on:mousemove="dummy">停止鼠标事件</span>
+                <!-- 也可以利用.stop来进行操作，则不需要函数支持 -->
+                <span v-on:mousemove.stop="">停止鼠标事件</span>
+            </p>
+            <input type="text" name="name" v-on:keyup="alertMe">
+            <br/>
+            <!-- 可以限制函数在什么事件下才触发，当前限制的是在enter和space键操作keyup的时候触发alertMe函数 -->
+            <input type="text" name="name" v-on:keyup.enter.space="alertMe">
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    counter:0,
+                    x:0,
+                    y:0
+                },
+                methods: {
+                    increase: function( step, event ) {
+                        this.counter += step;
+                    },
+                    updateCoordinates:function(event){
+                        this.x = event.clientX;
+                        this.y = event.clientY;
+                    },
+                    dummy:function(event){
+                        //stopPropagation方法阻止事件冒泡到父元素，阻止任何父事件处理程序被执行
+                        event.stopPropagation();
+                    },
+                    alertMe:function(){
+                        alert('Alert');
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
