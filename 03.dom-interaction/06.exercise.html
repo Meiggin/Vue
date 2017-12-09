@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>06.exercise</title>
+    </head>
+    <body>
+        <div id="exercise">
+         <!--
+         1) 控制按钮让其结果值如果等于37的时候就打印出“done”的字符内容
+         -->
+          <div>
+          	<p>当前值：{{value}}</p>
+          	<button @click="value += 5">加5</button>
+          	<button @click="value += 1">加1</button>
+			<p>结果：{{result}}</p>
+          </div>
+          <!--
+          2) 监控value值，让其在5秒以后使其值自动重置，利用setTimeout
+          -->
+          <div>
+          	<input type="text">
+          	<p>{{value}}</p>
+          </div>
+			
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#exercise',
+                data:{
+					value: 0
+				}
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>03.02.listening-event</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 第二种方法：通过按钮直接改变变量，再调用函数实现 -->
+            <button type="button" name="button" v-on:click="counter++">Increase</button>
+            <button type="button" name="button" v-on:click="counter--">Descrease</button>
+            <p>
+                counter: {{ counter }}
+            </p>
+            <p>
+                第二种方法：
+                result:
+                {{ result() }}
+            </p>
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    counter:0
+                },
+                methods: {
+                    result(){
+                        return this.counter > 5 ? '大于5了' : '小于5呢';
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>03.01.listening-event</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 第一种方式：增加一个button进行decrease操作 -->
+            <button type="button" name="button" v-on:click="increase">Increase</button>
+            <button type="button" name="button" v-on:click="decrease">Decrease</button>
+            <p>
+                counter: {{ counter }}
+            </p>
+            <p>
+                第一种方法：
+                result:
+                {{ counter > 5 ? '大于5了' : '小于5呢' }}
+                --->
+                {{ result }}
+            </p>
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    counter:0,
+                    result:''
+                },
+                methods: {
+                    increase: function() {
+                        this.counter++;
+                        this.result = this.counter > 5 ? '大于5了' : '小于5呢';
+                    },
+                    decrease:function(){
+                        this.counter--;
+                        this.result = this.counter > 5 ? '大于5了' : '小于5呢';
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

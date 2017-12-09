@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>04.watch</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 第三种方法：通过计算属性，区别方法与计算属性之间的差异，操作counter的时候
+            Computed和Method都执行了，而secondCounter的时候却只执行了Computed函数，而且
+            Computed的输出模式直接输出属性值即可，不需要函数表现方式。 -->
+            <button type="button" name="button" v-on:click="counter++">Increase</button>
+            <button type="button" name="button" v-on:click="counter--">Descrease</button>
+            <button type="button" name="button" v-on:click="secondCounter--">Increase Second</button>
+
+            <p>
+                counter: {{ counter }} | {{ secondCounter }}
+            </p>
+            <p>
+                第二种方法：
+                result:
+                {{ result() }} | {{ output }}
+            </p>
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    counter:0,
+                    secondCounter:0
+                },
+                computed:{
+                    output:function(){
+                        console.log('Computed');
+                        return this.counter > 5 ? '大于5了' : '小于5呢';
+                    }
+                },
+				// 利用watch可以对对象内容进行监控操作，但需要注意this对象的不同
+				watch:{
+					counter:function(value){
+                        console.log(value);
+						var vm = this;
+						setTimeout(function(){
+							vm.counter = 0;
+						},2000);
+					}	
+				},
+                methods: {
+                    result(){
+                        console.log('Method');
+                        return this.counter > 5 ? '大于5了' : '小于5呢';
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

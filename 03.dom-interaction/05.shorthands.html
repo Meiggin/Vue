@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>05.shorthands</title>
+    </head>
+    <body>
+        <div id="app">
+          
+			<!--<button v-on:click="changeLink">Click to change link</button>
+            <a v-bind:href="link">Link</a>
+            -->
+            <!-- 可以将事件绑定v-on:缩写成@，可以将数据绑定v-bind:等缩写成: -->
+            <button @click="changeLink">Click to change link</button>
+            <a :href="link">Link</a>
+
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data:{
+					link:'http://www.baidu.com'
+				},
+				methods:{
+					changeLink:function(){
+						this.link = 'http://www.163.com'
+					}
+				}
+            });
+        </script>
+    </body>
+</html>
