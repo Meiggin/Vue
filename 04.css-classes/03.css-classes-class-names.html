@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>01.css-classes-class-names</title>
+        <style>
+			.demo{
+				width:100px;
+				height:100px;
+				background-color: gray;
+				display: inline-block;
+				margin: 10px;
+			}
+			.red {background-color: red;}
+			.green {background-color: green;}
+			.blue {background-color: blue;}
+		</style>
+    </head>
+    <body>
+        <div id="app">
+           <div class="demo"
+            @click="attachRed = !attachRed"
+            :class="divClasses"></div>
+            <div class="demo" :class="{red:attachRed}"></div>
+			<!--通过改变input的值可以设置div的样式，改变值的范围是red/green/blue-->
+			<div class="demo" :class="color"></div>
+            <!-- 可以设置数组形式，这样就是多样式操作 -->
+            <div class="demo" :class="[color,{red:attachRed}]"></div>
+            <hr>
+            <input type="text" v-model="color">
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    attachRed:false,
+					color:'green'
+                },
+				computed:{
+					divClasses:function(){
+						return {
+							red: this.attachRed,
+							blue:!this.attachRed
+						};
+					}
+				}
+            });
+        </script>
+    </body>
+</html>
