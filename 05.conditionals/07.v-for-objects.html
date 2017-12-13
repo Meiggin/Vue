@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>07.v-for-objects</title>
+        
+    </head>
+    <body>
+        <div id="app">
+           <ul>
+           		<li v-for="(ingredient,i) in ingredients">{{ingredient}} ({{i}})</li>
+           </ul>
+           <hr>
+           <ul>
+           		<li v-for="person in persons">
+					<!--直接输出对象属性-->
+					<!--{{person.name}}-->
+					<!--嵌套循环输出对象-->
+<!--
+           			<span v-for="value in person">
+           				{{value}}
+           			</span>
+-->
+           			<!--嵌套循环输出对象的键值对-->
+<!--
+           			<span v-for="(value,key) in person">
+           				 {{key}}：{{value}}
+           			</span>
+-->
+         			<!--嵌套循环输出对象的键值对及下标信息-->
+          			<span v-for="(value,key,index) in person">
+           				 {{key}}：{{value}} ({{index}})
+           			</span>
+           		</li>
+           </ul>
+           <template v-for="(ingredient,index) in ingredients">
+           		<h1>{{ingredient}}</h1>
+           		<p>{{index}}</p>
+           </template>
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    ingredients:['meat','fruit','cookies'],
+					persons:[
+						{name:'Vane',age:38,color:'red'},
+						{name:'Fang',age:27,color:'blue'}
+					]
+                }
+            });
+        </script>
+    </body>
+</html>

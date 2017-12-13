@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>11.exercise-result</title>
+        
+    </head>
+    <body>
+        <div id="exercise">
+           <!--
+           1) 点击按钮切换段落的显示与隐藏，分析v-if和v-show对于元素控制的区别
+           -->
+           <div>
+           	<button @click="isShow = !isShow">Toggle</button>
+           	<p v-if="isShow">You either see me...</p>
+           	<p v-else>...or me</p>
+           	<p v-show="isShow">You either see me...</p>
+           	<p v-show="!isShow">...or me</p>
+           </div>
+           <!--
+           2)利用ul循环输出数组，并打印下标
+           -->
+           <ul>
+           	<li v-for="(element,index) in array">{{element}} - {{index}}</li>
+           </ul>
+           <!--
+           3)打印对象的键值对内容:{title:'Lord of the Rings',author:'J.R.R Tolkiens',books:'3'}，并且打印每个对象的索引
+           -->
+           <ul>
+           	<li v-for="(value,keyName,i) in myObject">{{value}} - {{keyName}} - {{i}} </li>
+           </ul>
+           <!--
+           4)打印下面的对象（只打印其值），并且创建嵌套数组的循环输出:{name:'TESTOBJECT',data:[1.67,1.33,0.98,2.21]}
+           -->
+           <ul>
+           	<li v-for="value in testData">
+           		<template v-if="Array.isArray(value)">
+           			<div v-for="element in value">{{element}}</div>
+           		</template>
+           		<template v-else>
+           			{{value}}
+           		</template>
+           	</li>
+           </ul>
+        </div>
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#exercise',
+				data:{
+					isShow:true,
+					array:['Vane','Fang','Max','Rose'],
+					myObject:{
+						title:'Lord of the Rings',
+						author:'J.R.R Tolkiens',
+						books:'3'
+					},
+					testData:{
+						name:'TESTOBJECT',
+						data:[1.67,1.33,0.98,2.21]
+					}
+				}
+            });
+        </script>
+    </body>
+</html>
