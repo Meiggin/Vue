@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>02.the-data-function</title>
+    </head>
+    <body>
+        <div id="app">
+        <!-- 我们的目标是设置my-cmp组件调用模式，并且调用多次也无所谓-->
+		  <my-cmp></my-cmp>
+		  <hr>
+		  <my-cmp></my-cmp>
+		</div>
+
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+		 	/*
+			1.将data设置在全局变量中，并且在组件中return data以后，通过组件按钮改变对象值的话，
+			所有组件对象值都将改变；
+			2.需要控制每个组件都有自己独立的状态值对象，那么需要将变量设置并返回在组件当中，
+			不能设置为全局变量；
+			*/
+			
+			// var data = {status:'Critical'};
+			
+			//组件创建模式
+			Vue.component('my-cmp',{
+				data: function(){
+					// return data;
+					return {
+						status:'Critical'
+					}
+				},
+				template: `<p>Server Status: {{ status }} 
+				(<button @click="changeStatus">Change</button>) </p>`,
+				methods:{
+					changeStatus:function(){
+						this.status = 'Normal';
+					}
+				}
+			});
+			
+           new Vue({
+			  el: '#app'
+		   });
+
+        </script>
+    </body>
+</html>

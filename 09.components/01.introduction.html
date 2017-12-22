@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>01.introduction</title>
+    </head>
+    <body>
+        <div id="app">
+        <!-- 我们的目标是设置my-cmp组件调用模式，并且调用多次也无所谓-->
+<!--
+		  <my-cmp></my-cmp>
+		  <hr>
+		  <my-cmp></my-cmp>
+-->
+		</div>
+		
+<!--
+		<div class="app"></div>
+		<div class="app"></div>
+-->
+		<script type="text/javascript" src="../node_modules/vue/dist/vue.min.js"></script>
+        <script type="text/javascript">
+		 	//组件创建模式
+			Vue.component('my-cmp');
+			
+           new Vue({
+			  el: '#app', //将对象修改成.app的类的形式，并且编写div的class属性为app，设置多个对象，但还是只显示一个Critical --> '.app'
+			  data: {
+				status: 'Critical'
+			  },
+			  template:'<p>Server Status: {{ status }} </p>'
+			});
+
+        </script>
+    </body>
+</html>
